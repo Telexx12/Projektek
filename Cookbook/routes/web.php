@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StatsController;
 use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-
-    return view('welcome');
+    return view('pages.welcome');
 });
+Route::get('/stats',[StatsController::class,'statsview'])->name('stats');

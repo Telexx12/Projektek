@@ -9,7 +9,7 @@
     @vite('resources/css/app.css')
     @livewireStyles
 </head>
-<body>
+<body class="bg-gray-100">
     @include('components.navbar')
 
     @yield('page-content')

@@ -7,8 +7,8 @@
 
     <h2 class="text-white">Charts</h2>
     <div class="my-6">
-        <div class="text-white"><span x-text="selectedYear"></span>: <span x-text="lastYearOrders.reduce((a, b) => a + b)"></span></div>
-        <div class="text-white">This Year: <span x-text="thisYearOrders.reduce((a,b) => a + b)"></span></div>
+        <div class="text-white"><span x-text="selectedYear - 1"></span>: <span x-text="lastYearOrders.reduce((a, b) => a + b)"></span></div>
+        <div class="text-white"><span x-text="selectedYear"></span>: <span x-text="thisYearOrders.reduce((a,b) => a + b)"></span></div>
     </div>
     <div class="mt-4"
          x-data="{
@@ -28,7 +28,6 @@
                     backgroundColor: 'lightgreen',
                     data: this.thisYearOrders
                 }]
-
             };
 
             const config = {
