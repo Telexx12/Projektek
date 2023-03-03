@@ -1,0 +1,29 @@
+{
+  "devDependencies": {
+    "@fitbit/sdk": "~4.1.0",
+    "@fitbit/sdk-cli": "^1.7.3"
+
+  },
+  "fitbit": {
+    "appUUID": "94d33b2e-2b20-4d32-b772-4a0fe4d422c6",
+    "appType": "app",
+    "appDisplayName": "SXS",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#607d8b",
+    "requestedPermissions": [
+      "access_activity"
+    ],
+    "buildTargets": [
+      "mira",
+      "higgs",
+      "meson",
+      "gemini"
+    ],
+    "i18n": {
+      "en-US": {
+        "name": "SXS"
+      }
+    },
+    "defaultLanguage": "en-US"
+  }
+}
