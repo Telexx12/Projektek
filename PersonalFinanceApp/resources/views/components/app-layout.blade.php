@@ -6,6 +6,5 @@
         <div class="w-4/5">
             {{$slot}}
         </div>
-        @livewireScripts
     </div>
 </x-master>

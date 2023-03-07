@@ -1,4 +1,3 @@
 <x-app-layout>
-    <livewire:dashboard/>
+    <h1>teszt</h1>
 </x-app-layout>
-

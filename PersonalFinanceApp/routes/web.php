@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AccountsController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +26,11 @@ Route::get('/register', function (){
 })->name('register');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/logout',[UserController::class,'logout'])->name('logout');
+
     Route::get('/', function () {
         return view('pages.welcome');
-    });
+    })->name('dashboard');
+
+    Route::get('/accounts',[AccountsController::class,'show'])->name('accounts');
 });

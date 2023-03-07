@@ -15,3 +15,10 @@ mix.js("resources/js/app.js", "public/js")
     .postCss("resources/css/app.css", "public/css", [
         require("tailwindcss"),
     ]);
+
+mix.sass('resources/sass/fontawesome.scss','public/css')
+.copy(
+    'node_modules/@fortawesome/fontawesome-free/webfonts',
+    'public/webfonts'
+);
+mix.copy('resources/assets/js/sweetalert2.all.min.js', 'public/assets/js');

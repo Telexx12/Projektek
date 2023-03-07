@@ -8,8 +8,14 @@
     <title>Document</title>
     @livewireStyles
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet">
+    <script src="{{asset('js/app.js')}}" defer></script>
+
 </head>
 <body>
     {{$slot}}
+    @livewireScripts
+    <script src="{{asset('assets/js/sweetalert2.all.min.js')}}"></script>
+    <x-livewire-alert::scripts />
 </body>
 </html>

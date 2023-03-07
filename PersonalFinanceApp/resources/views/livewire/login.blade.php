@@ -3,21 +3,33 @@
         <h1 class="text-5xl font-bold text-left tracking-wide">Keep it special</h1>
         <p class="text-3xl my-4">Capture your personal memory in unique way, anywhere.</p>
     </x-slot:text>
-
-    <form action="" class="md:w-full w-full px-4 lg:px-0 lg:mx-auto lg:w-2/3">
+    <div class="flex items-center justify-center w-full">
+         <x-errors/>
+    </div>
+    <form wire:submit.prevent="submit" class="md:w-full w-full px-4 lg:px-0 lg:mx-auto lg:w-2/3">
         <div class="pb-2 pt-4">
-            <input type="email" name="email" id="email" placeholder="Email"
-                   class="block w-full p-4 text-lg rounded-sm bg-black">
+            <x-input placeholder="Email"
+                     wire:model="email"
+                     class="block w-full p-4 text-lg rounded-sm bg-black"/>
         </div>
         <div class="pb-2 pt-4">
-            <input class="block w-full p-4 text-lg rounded-sm bg-black" type="password"
-                   name="password"
-                   id="password" placeholder="Password">
+            <x-input placeholder="Password"
+                     wire:model="password"
+                     class="block w-full p-4 text-lg rounded-sm bg-black"
+                     type="password"/>
         </div>
-
+        <div class="flex justify-end text-base">
+            <label class="flex items-center">
+                  <span class="">
+                    Keep me signed in
+                </span>
+                <input wire:model.defer="remember_token" type="checkbox" class="ml-2 accent-indigo-500">
+            </label>
+        </div>
         <div class="px-4 pb-2 pt-4">
             <button
-                class="uppercase block w-full p-4 text-lg rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none">
+                class="uppercase block w-full p-4 text-lg rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none"
+                type="submit">
                 sign in
             </button>
         </div>
