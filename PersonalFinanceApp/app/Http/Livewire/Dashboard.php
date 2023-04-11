@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Imports\TransactionsImport;
+use App\Imports\OTPImport;
 use App\Models\Transaction;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
@@ -59,7 +59,7 @@ class Dashboard extends Component
            'importFile' => 'mimes:csv,xlsx',
         ]);
 
-        Excel::import(new TransactionsImport(),$this->importFile);
+        Excel::import(new OTPImport(),$this->importFile);
         $this->alert('success', 'User created!', [
             'position' => 'center',
             'timer' => 3000,

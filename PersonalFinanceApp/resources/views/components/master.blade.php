@@ -9,6 +9,7 @@
     @livewireStyles
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet">
+    <wireui:scripts />
     <script src="{{asset('js/app.js')}}" defer></script>
 
 </head>

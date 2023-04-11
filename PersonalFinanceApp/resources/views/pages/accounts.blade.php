@@ -1,3 +1,3 @@
 <x-app-layout>
-    <h1>teszt</h1>
+    <livewire:accounts/>
 </x-app-layout>

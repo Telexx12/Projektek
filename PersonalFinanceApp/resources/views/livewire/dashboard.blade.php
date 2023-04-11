@@ -1,29 +1,29 @@
 <div class="flex flex-col items-center p-8 rounded-lg overflow-hidden">
-    <div class="flex justify-between w-11/12 mb-6">
-        <div class="w-1/3 mr-10">
+    <div class="hidden flex-col items-center md:justify-between w-11/12 md:flex-row mb-6 lg:flex">
+        <div class=" w-11/12 mb-6 md:w-1/3 md:mr-10">
             <x-card>
                 <div class="flex">
                     <div class="w-8/12">
-                        <h3 class="font-bold">Total income</h3>
-                        <h1 class="text-3xl font-bold mt-2 mb-2">{{$total_income}} RON</h1>
+                        <h3 class="font-bold whitespace-nowrap">Total income</h3>
+                        <h1 class="text-lg xl:text-3xl font-bold mt-2 mb-2 whitespace-nowrap">{{$total_income}} RON</h1>
                     </div>
                     <div class="w-4/12 flex items-center justify-center">
                         <div class="bg-green-100 p-3 rounded-full">
-                            <span class="text-4xl text-green-600">
-                            <i class="fa-solid fa-arrow-trend-up">
-                            </i>
+                            <span class="text-xl lg:text-4xl text-green-600">
+                                    <i class="fa-solid fa-arrow-trend-up">
+                                    </i>
                                 </span>
                         </div>
                     </div>
                 </div>
             </x-card>
         </div>
-        <div class="w-1/3 mr-10">
+        <div class="w-11/12 mb-6 md:w-1/3 md:mr-10">
             <x-card>
                 <div class="flex">
                     <div class="w-8/12">
-                        <h3 class="font-bold">Total Expens</h3>
-                        <h1 class="text-3xl font-bold mt-2 mb-2">{{$total_expens}} RON</h1>
+                        <h3 class="font-bold whitespace-nowrap">Total Expens</h3>
+                        <h1 class="text-lg xl:text-3xl font-bold mt-2 mb-2 whitespace-nowrap">{{$total_expens}} RON</h1>
                     </div>
                     <div class="w-4/12 flex items-center justify-center">
                         <div class="bg-red-100 p-3 rounded-full">
@@ -36,12 +36,12 @@
                 </div>
             </x-card>
         </div>
-        <div class="w-1/3">
+        <div class="w-11/12 mb-6 md:w-1/3">
             <x-card>
                 <div class="flex">
                     <div class="w-8/12">
-                        <h3 class="font-bold">Current Balance</h3>
-                        <h1 class="text-3xl font-bold mt-2 mb-2">{{$current_balance}} RON</h1>
+                        <h3 class="font-bold whitespace-nowrap">Current Balance</h3>
+                        <h1 class="text-lg xl:text-3xl font-bold mt-2 mb-2 whitespace-nowrap">{{$current_balance}} RON</h1>
                     </div>
                     <div class="w-4/12 flex items-center justify-center">
                         <div class="bg-blue-100 p-3 rounded-full">
@@ -60,8 +60,8 @@
                 <div class="flex justify-center items-center">
                     <div class="mb-6 w-11/12">
                         <x-card>
-                            <div class="flex ">
-                                <div class="w-10/12">
+                            <div class="flex flex-col  md:flex-row">
+                                <div class="w-100 md:w-10/12 mb-4 md:mb-0">
                                     <p class="font-bold">
                                         {{$transaction->completed_date}}
                                     </p>
@@ -69,7 +69,7 @@
                                         {{$transaction->description}}
                                     </p>
                                 </div>
-                                <div class="flex justify-center items-center text-right w-2/12">
+                                <div class="flex justify-center items-center w-100 text-right md:w-2/12">
                                     <p class="font-bold text-xl">{{$transaction->amount}} {{$transaction->currency}}  @if($transaction->amount > 0)
                                             <span class="text-green-600"><i
                                                     class="fa-solid fa-arrow-trend-up"></i></span>
