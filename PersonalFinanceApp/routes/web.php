@@ -33,4 +33,5 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 
     Route::get('/accounts',[AccountsController::class,'show'])->name('accounts');
+    Route::get('/account/{account}',[AccountsController::class,'details'])->name('account.details');
 });

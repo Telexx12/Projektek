@@ -72,6 +72,20 @@ class Account extends Model
             $query->where('completed_date', '<=', Carbon::now()->subDay()->format('Y-m-d'));
         }], 'amount');
     }
+
+    public function scopeLastMonthAmountByDay($query){
+        $query->withSum(['transactions' => function ($query){
+            $query->where('completed_date', '<=', Carbon::now()->subMonth()->format('Y-m-d'))->groupBy('completed_date');
+        }], 'amount');
+    }
+
+
+//    public function scopeTransactionsGroupByMonth($query){
+//        $query->withSum(['transactions as group_month' =>function ($query){
+//
+//        }]);
+//    }
+
 //    protected function comparison(): Attribute
 //    {
 //        return new Attribute(
