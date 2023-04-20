@@ -975,6 +975,10 @@ select {
   margin-left: 0.125rem;
   margin-right: 0.125rem;
 }
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -1131,6 +1135,9 @@ select {
 .h-8 {
   height: 2rem;
 }
+.h-80 {
+  height: 20rem;
+}
 .h-9 {
   height: 2.25rem;
 }
@@ -1257,6 +1264,9 @@ select {
 }
 .w-screen {
   width: 100vw;
+}
+.w-2\/3 {
+  width: 66.666667%;
 }
 .max-w-\[18rem\] {
   max-width: 18rem;
