@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('account_id')->constrained()->onDelete('cascade');
+            $table->foreignId('account_id')->index()->constrained()->onDelete('cascade');
             $table->date('started_date');
-            $table->date('completed_date');
+            $table->date('completed_date')->index();
             $table->text('description')->nullable();
             $table->string('currency')->default('RON');
             $table->double('amount');
-            $table->foreignId('user_id')->constrained();
+            $table->text('comment')->nullable()->index();
+            $table->foreignId('user_id')->index()->constrained();
+            $table->foreignId('category_id')->index()->nullable();
+
             $table->timestamps();
         });
     }

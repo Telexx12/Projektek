@@ -78,9 +78,8 @@
 
 >
     <h1 class="text-center font-bold">Chart</h1>
-    <div class="w-full relative h-80">
+    <div class="w-full relative h-60 md:h-80">
         <canvas id="cash-line-chart" class="w-100" x-ref="canvas"></canvas>
-
     </div>
     <div class="flex justify-between border rounded-lg">
         <div class="flex flex-1 items-center rounded-l-lg border-r">
@@ -88,35 +87,35 @@
                    name="chartRadio" wire:model="selectedRadio"
             >
             <label for="chartRadioWeek"
-                   class="text-sm font-semibold w-full h-full flex justify-center p-2 peer-checked:bg-blue-100">1
+                   class="text-xs md:text-sm whitespace-nowrap font-semibold w-full h-full flex justify-center p-2 peer-checked:bg-blue-100">1
                 Week</label>
         </div>
         <div class="flex flex-1 items-center border-r">
             <input id="chartRadioMonth" type="radio" class="hidden peer" value="month"
                    name="chartRadio" wire:model="selectedRadio">
             <label for="chartRadioMonth"
-                   class="text-sm font-semibold w-full h-full flex justify-center p-2 peer-checked:bg-blue-100">1
+                   class="text-xs md:text-sm whitespace-nowrap font-semibold w-full h-full flex justify-center p-2 peer-checked:bg-blue-100">1
                 Month</label>
         </div>
         <div class="flex flex-1 items-center border-r">
             <input id="chartRadioMonths" type="radio" class="hidden peer" value="months"
                    name="chartRadio" wire:model="selectedRadio">
             <label for="chartRadioMonths"
-                   class="text-sm font-semibold w-full h-full flex justify-center p-2 peer-checked:bg-blue-100">3
+                   class="text-xs md:text-sm whitespace-nowrap font-semibold w-full h-full flex justify-center p-2 peer-checked:bg-blue-100">3
                 Month</label>
         </div>
         <div class="flex flex-1 items-center border-r">
             <input id="chartRadioYear" type="radio" class="hidden peer" value="year"
                    name="chartRadio" wire:model="selectedRadio">
             <label for="chartRadioYear"
-                   class="text-sm font-semibold w-full h-full flex justify-center p-2 peer-checked:bg-blue-100">1
+                   class="text-xs md:text-sm whitespace-nowrap font-semibold w-full h-full flex justify-center p-2 peer-checked:bg-blue-100">1
                 Year</label>
         </div>
         <div class="flex flex-1 items-center">
             <input id="chartRadioAll" type="radio" class="hidden peer" value="all"
                    name="chartRadio" wire:model="selectedRadio">
             <label for="chartRadioAll"
-                   class="text-sm font-semibold w-full h-full flex justify-center p-2 peer-checked:bg-blue-100">All</label>
+                   class="text-xs md:text-sm whitespace-nowrap font-semibold w-full h-full flex justify-center p-2 peer-checked:bg-blue-100">All</label>
         </div>
     </div>
 </div>

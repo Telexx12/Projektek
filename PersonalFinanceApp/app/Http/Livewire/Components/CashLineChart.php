@@ -24,6 +24,10 @@ class CashLineChart extends Component
     public $add;
     public $default;
 
+    protected $listeners = [
+        'transactionAdded',
+    ];
+
     public function mount()
     {
 
@@ -39,31 +43,39 @@ class CashLineChart extends Component
 
     }
 
+    public function transactionAdded(){
+
+//        dd('teszt');
+
+        $this->updatedSelectedRadio();
+    }
+
+
     public function updatedSelectedRadio()
     {
         switch ($this->selectedRadio) {
             case 'week':
-                $this->transactions = Transaction::where('account_id', $this->account->id)->where('completed_date', '>=', Carbon::now()->subWeek()->format('Y-m-d'))->get()->groupBy('completed_date')->toArray();
+                $this->transactions = Transaction::where('account_id', $this->account->id)->where('completed_date', '>=', Carbon::now()->subWeek()->format('Y-m-d'))->orderBy('completed_date')->get()->groupBy('completed_date')->toArray();
                 $this->amount = Transaction::where('account_id', $this->account->id)->where('completed_date', '<', Carbon::now()->subWeek()->format('Y-m-d'))->sum('amount');
                 $this->buildChartDataWeek($this->transactions, $this->amount);
                 break;
             case 'month':
-                $this->transactions = Transaction::where('account_id', $this->account->id)->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'))->get()->groupBy('completed_date')->toArray();
+                $this->transactions = Transaction::where('account_id', $this->account->id)->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'))->orderBy('completed_date')->get()->groupBy('completed_date')->toArray();
                 $this->amount = Transaction::where('account_id', $this->account->id)->where('completed_date', '<', Carbon::now()->subMonth()->format('Y-m-d'))->sum('amount');
                 $this->buildChartDataMonth($this->transactions, $this->amount);
                 break;
             case 'months':
-                $this->transactions = Transaction::where('account_id', $this->account->id)->where('completed_date', '>=', Carbon::now()->subMonths(3)->format('Y-m-d'))->get()->groupBy('completed_date')->toArray();
+                $this->transactions = Transaction::where('account_id', $this->account->id)->where('completed_date', '>=', Carbon::now()->subMonths(3)->format('Y-m-d'))->orderBy('completed_date')->get()->groupBy('completed_date')->toArray();
                 $this->amount = Transaction::where('account_id', $this->account->id)->where('completed_date', '<', Carbon::now()->subMonths(3)->format('Y-m-d'))->sum('amount');
                 $this->buildChartData($this->transactions, $this->amount);
                 break;
             case 'year':
-                $this->transactions = Transaction::where('account_id', $this->account->id)->where('completed_date', '>=', Carbon::now()->subYear()->format('Y-m-d'))->get()->groupBy('completed_date')->toArray();
+                $this->transactions = Transaction::where('account_id', $this->account->id)->where('completed_date', '>=', Carbon::now()->subYear()->format('Y-m-d'))->orderBy('completed_date')->get()->groupBy('completed_date')->toArray();
                 $this->amount = Transaction::where('account_id', $this->account->id)->where('completed_date', '<', Carbon::now()->subYear()->format('Y-m-d'))->sum('amount');
                 $this->buildChartDataYear($this->transactions, $this->amount);
                 break;
             case 'all':
-                $this->transactions = Transaction::where('account_id', $this->account->id)->get()->groupBy('completed_date')->toArray();
+                $this->transactions = Transaction::where('account_id', $this->account->id)->orderBy('completed_date')->get()->groupBy('completed_date')->toArray();
                 $this->buildChartDataAll($this->transactions);
                 break;
 
@@ -77,14 +89,14 @@ class CashLineChart extends Component
     }
 
 
-
     protected function buildChartDataAll($transactions)
     {
         $this->chartDatas = [];
         $current_amount = 0;
 
-        $last_date = array_key_last($transactions);
 
+
+        $last_date = array_key_first($transactions);
 
         for ($date = Carbon::parse($last_date); $date <= Carbon::now(); $date->addDay()) {
 
@@ -97,7 +109,6 @@ class CashLineChart extends Component
                 }
                 $current_amount += $change;
             }
-
             $this->chartDatas[$day] = $current_amount;
         }
 
@@ -152,9 +163,6 @@ class CashLineChart extends Component
     }
 
 
-
-
-
     protected function buildChartDataMonth($transactions, $amount)
     {
         $this->chartDatas = [];
@@ -177,7 +185,6 @@ class CashLineChart extends Component
         }
 
     }
-
 
 
     protected function buildChartDataWeek($transactions, $amount)

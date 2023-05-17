@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountsController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -34,4 +35,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/accounts',[AccountsController::class,'show'])->name('accounts');
     Route::get('/account/{account}',[AccountsController::class,'details'])->name('account.details');
+    Route::get('/settings',[SettingsController::class,'show'])->name('settings');
+
 });

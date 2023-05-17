@@ -1,8 +1,8 @@
 <x-master>
-    <div class="flex bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
+    <div class="flex bg-gray-50 dark:bg-gray-900 min-h-[100vh]" :class="{ 'overflow-hidden': isSideMenuOpen }">
         <x-navbar/>
 
-        <div class="w-100 md:w-4/5">
+        <div class="w-full md:w-4/5">
             {{$slot}}
         </div>
     </div>

@@ -16,7 +16,7 @@
     </button>
 
     @foreach($accounts as $account)
-        <a class="mb-6 mr-3 w-full sm:w-[46.5%] md:w-[46.5%] lg:w-[45%] 2xl:w-[30%]" id="{{$account->id}}" href="{{route("account.details",$account)}}">
+        <div class="mb-6 mr-3 w-full sm:w-[46.5%] md:w-[46.5%] lg:w-[45%] 2xl:w-[30%]" id="{{$account->id}}" href="{{route("account.details",$account)}}" wire:click="redirectToDetails({{$account->id}})">
             <x-card cardClasses="h-full">
                 <div>
                     <div class="flex justify-between">
@@ -24,7 +24,7 @@
                             <h3 class="font-semibold text-xl mb-3 max-w-lg overflow-hidden text-ellipsis whitespace-nowrap">{{$account->account_name}}</h3>
                         </div>
                         <div class="flex-2 flex justify-end">
-                            <div class="mr-4 hidden xl:block">
+                            <div class="mr-4 hidden xl:block" wire:click.stop>
                                 <div class="flex border rounded-lg">
                                     <div
                                         class="flex items-center rounded-l-lg border-r {{$this->comparisonBasicChecked($account->id,'day') ? 'bg-blue-100' : ''}}">
@@ -40,7 +40,7 @@
                                                wire:model="comparisonBasic.{{$account->id}}" value="week"
                                         >
                                         <label for="{{$account->id}}.2"
-                                               class="text-sm font-semibold w-full h-full flex items-center p-2">Week</label>
+                                               class="text-sm font-semibold w-full h-full flex items-center p-2" wire:click.stop="testfunction">Week</label>
                                     </div>
                                     <div
                                         class="flex items-center rounded-r-lg {{$this->comparisonBasicChecked($account->id,'month') ? 'bg-blue-100' : ''}}">
@@ -48,16 +48,19 @@
                                                wire:model="comparisonBasic.{{$account->id}}" value="month"
                                         >
                                         <label for="{{$account->id}}.3"
-                                               class="text-sm font-semibold w-full h-full flex items-center p-2">Month</label>
+                                               class="text-sm font-semibold w-full h-full flex items-center p-2" wire:click.stop="testfunction">Month</label>
                                     </div>
                                 </div>
                             </div>
                             <div wire:ignore>
                                 <button class="text-blue-700 mr-6 text-xl md:mr-2 md:text-base"
-                                        wire:click="editAccount({{$account->id}})"><i
+                                        wire:click.stop="editAccount({{$account->id}})"><i
                                         class="fa-solid fa-pen"></i></button>
-                                <button class="text-red-700 text-xl md:text-base"
-                                        wire:click="confirmDelete({{$account->id}},'{{$account->account_name}}')"><i
+                                <button class="hidden md:inline-block text-red-700 text-xl md:text-base"
+                                        wire:click.stop="confirmDelete({{$account->id}},'{{$account->account_name}}')"><i
+                                        class="fa-solid fa-trash"></i></button>
+                                <button class="md:hidden text-red-700 text-xl md:text-base"
+                                        wire:click.stop="confirmDeletePhone({{$account->id}},'{{$account->account_name}}')"><i
                                         class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
@@ -109,7 +112,7 @@
                                 RON</p>
                         </div>
                     </div>
-                    <div class="block mt-3 xl:hidden">
+                    <div class="block mt-3 xl:hidden" wire:click.stop>
                         <div class="flex justify-center">
                             <div class="flex border w-full lg:w-2/3 justify-between rounded-lg">
                                 <div
@@ -141,7 +144,7 @@
                     </div>
                 </div>
             </x-card>
-        </a>
+        </div>
     @endforeach
 
 
@@ -239,7 +242,7 @@
     </x-modal>
 
     <x-modal blur wire:model="editAccountModal" align="start" wire:key="{{rand()}}">
-        <x-card title="Edit Account" class="text-base"
+        <x-card title="Edit Account" class="text-sm md:text-base"
                 x-init="edit_details = {{$selectedType == 2 ? 'true' : 'false'}};">
             <div class="flex w-100 rounded-lg border"
                  x-data="{edit_selectedType: @entangle('selectedType')}">
@@ -251,8 +254,8 @@
                                x-on:change="if(edit_selectedType == 2) edit_details = true; else edit_details = false;"
                         >
                         <label for="edit_type_{{$loop->iteration}}"
-                               class="text-sm {{$loop->iteration == 1 ? 'rounded-l-lg' : ''}} {{$loop->last ? 'rounded-r-lg' : ''}} font-semibold w-full h-full flex items-center justify-center p-2 bg-white-100 peer-checked:bg-blue-100">
-                            <img class="rounded-full w-1/12 mr-1" src="{{asset("storage/{$type->icon_name}")}}">
+                               class="text-sm {{$loop->iteration == 1 ? 'rounded-l-lg' : ''}} {{$loop->last ? 'rounded-r-lg' : ''}}text-sm md:text-base font-semibold w-full h-full flex items-center justify-center p-2 bg-white-100 peer-checked:bg-blue-100">
+                            <img class="rounded-full w-[13%] md:w-1/12 mr-1" src="{{asset("storage/{$type->icon_name}")}}">
                             {{$type->account_type}}
                         </label>
                     </div>
@@ -265,12 +268,12 @@
                     <div x-data="{edit_selectedBank:@entangle('bank')}"
                          class="flex flex-wrap justify-around mt-3 mb-3 gap-y-3 gap-x-2">
                         @foreach($banks as $bank)
-                            <div class="w-1/6 rounded-lg border">
+                            <div class="w-[30%] sm:w-1/6 rounded-lg border">
                                 <input id="edit_bank_{{$loop->iteration}}" type="radio" class="peer hidden"
                                        x-model="edit_selectedBank" value="{{$bank->id}}">
                                 <label for="edit_bank_{{$loop->iteration}}"
                                        class="text-sm font-semibold w-full rounded-lg h-full flex items-center justify-center p-2 bg-white-100 peer-checked:bg-blue-100">
-                                    <img class="w-1/3  mr-2" src="{{asset("storage/{$bank->icon_name}")}}">
+                                    <img class="w-[25%] sm:w-1/3  mr-2" src="{{asset("storage/{$bank->icon_name}")}}">
                                     {{$bank->bank_name}}
                                 </label>
                             </div>
@@ -282,8 +285,8 @@
 
             <x-slot name="footer">
                 <div class="flex justify-end gap-x-4">
-                    <x-button flat label="Cancel" x-on:click="close"/>
-                    <x-button primary label="Edit" wire:click="saveEditedAccount({{$selectedAccount}})"/>
+                    <x-button class="w-1/2 sm:w-auto" outline gray flat label="Cancel" x-on:click="close"/>
+                    <x-button class="w-1/2 sm:w-auto" primary label="Edit" wire:click="saveEditedAccount({{$selectedAccount}})"/>
                 </div>
             </x-slot>
         </x-card>

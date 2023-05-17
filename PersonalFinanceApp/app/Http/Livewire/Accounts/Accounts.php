@@ -49,7 +49,12 @@ class Accounts extends Component
         $this->getAccounts();
     }
 
+    public function testfunction(){
+        $this->getAccounts();
+    }
+
     public function comparisonBasicChecked($id,$value){
+
         if(array_key_exists($id,$this->comparisonBasic)){
             if($this->comparisonBasic[$id] == $value){
                 return true;
@@ -168,6 +173,20 @@ class Accounts extends Component
         ]);
     }
 
+    public function confirmDeletePhone($id, $name){
+
+        $this->alert('warning',__('accounts.delete_account',['name' => $name]), [
+            'position' => 'center',
+            'data' => ['id' => $id],
+            'timer' => '',
+            'toast' => false,
+            'showConfirmButton' => true,
+            'onConfirmed' => 'deleteAccount',
+            'showCancelButton' => true,
+            'width' => '100%',
+        ]);
+    }
+
     public function editAccount($id){
         $account = Account::where('id', $id)->first();
 
@@ -222,6 +241,10 @@ class Accounts extends Component
         $this->getAccounts();
         $this->emit('refreshComponent');
         $this->editAccountModal = false;
+    }
+
+    public function redirectToDetails($id){
+        return redirect()->route('account.details',$id);
     }
 
     public function render()

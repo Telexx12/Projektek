@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('account_types', function (Blueprint $table) {
             $table->id();
-            $table->string('account_type');
+            $table->string('account_type')->index();
             $table->string('icon_name')->nullable();
         });
     }

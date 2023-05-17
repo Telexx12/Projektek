@@ -53,5 +53,10 @@ class User extends Authenticatable
         return $this->hasMany(Account::class);
     }
 
+    protected function categories():HasMany
+    {
+        return $this->hasMany(Categories::class)->orWhere('user_id',null);
+    }
+
 
 }

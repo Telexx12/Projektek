@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bank_types', function (Blueprint $table) {
             $table->id();
-            $table->string('bank_name');
+            $table->string('bank_name')->index();
             $table->string('icon_name')->nullable();
             $table->string('import_class')->nullable();
         });

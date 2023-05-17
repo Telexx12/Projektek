@@ -24,7 +24,7 @@ class OTPImport implements ToModel,WithHeadingRow, WithStartRow
     */
     public function model(array $row)
     {
-        return new Transaction([
+        Transaction::firstOrCreate([
             'started_date' => date('Y-m-d',strtotime($row['data_val'])),
             'completed_date' => date('Y-m-d',strtotime($row['data_op'])),
             'description' => $row['explicatie'],
