@@ -1,19 +1,25 @@
 <div class="flex flex-wrap justify-around mt-6 pb-12 md:mb-0 pl-3">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ asset('assets/js/chart.umd.js') }}"></script>
 
     <div class="mx-4 w-full">
-        <div class="flex w-full flex-col md:flex-row">
-            <div class="w-1/2"></div>
+        <div class="flex w-full flex-col md:flex-row gap-2">
             <div class="w-full  md:w-1/2">
                 <x-card>
                     <div class="w-full flex flex-col">
-                        <livewire:components.cash-line-chart :account="$account" />
+                        <livewire:components.category-pie-chart :account="$account"/>
+                    </div>
+                </x-card>
+            </div>
+            <div class="w-full  md:w-1/2">
+                <x-card>
+                    <div class="w-full flex flex-col">
+                        <livewire:components.cash-line-chart :account="$account"/>
                     </div>
                 </x-card>
             </div>
         </div>
-        <div class="flex flex-col md:flex-row mt-6">
-            <div class="w-full md:w-8/12">
+        <div class="flex flex-col md:flex-row mt-6 gap-2">
+            <div class="w-full order-2 md:order-1 md:w-8/12">
                 <x-card cardClasses="h-full">
                     <div class="flex justify-between items-center mb-2">
                         <div></div>
@@ -37,7 +43,12 @@
                     </div>
                 </x-card>
             </div>
-            <div class="w-4/12">
+            <div class="w-full order-1 md:order-2 md:w-4/12">
+                <x-card cardClasses="h-full">
+                    <div class="w-full h-full flex flex-col">
+                        <livewire:components.transaction-bar-chart :account="$account"/>
+                    </div>
+                </x-card>
             </div>
         </div>
     </div>
@@ -45,7 +56,8 @@
         <div x-data="{method : true}">
             <div class="flex w-100 rounded-lg border mb-2">
                 <div class="flex flex-1 items-center rounded-l-lg border-r">
-                    <input id="type" type="radio" class="peer hidden" name="radio" wire:model="transactionMethod" value="1">
+                    <input id="type" type="radio" class="peer hidden" name="radio" wire:model="transactionMethod"
+                           value="1">
                     <label for="type"
                            class="text-sm rounded-l-lg font-semibold w-full h-full flex items-center justify-center p-2 bg-white-100 peer-checked:bg-blue-100"
                            x-on:click="method = true">
@@ -53,7 +65,8 @@
                     </label>
                 </div>
                 <div class="flex flex-1 items-center rounded-r-lg border-r">
-                    <input id="type.1" type="radio" class="peer hidden" name="radio" wire:model="transactionMethod" value="0">
+                    <input id="type.1" type="radio" class="peer hidden" name="radio" wire:model="transactionMethod"
+                           value="0">
                     <label for="type.1"
                            class="text-sm rounded-r-lg font-semibold w-full h-full flex items-center justify-center p-2 bg-white-100 peer-checked:bg-blue-100"
                            x-on:click="method = false">
@@ -72,23 +85,27 @@
                     />
                     <div class="mt-2 flex flex-col md:flex-row justify-content-between gap-2">
                         <div class="flex-1">
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1" for="currency_select">Select
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1"
+                                   for="currency_select">Select
                                 currency</label>
                             <select id="currency_select" wire:model="transaction_currency"
                                     class=" placeholder-secondary-400 dark:bg-secondary-800 dark:text-secondary-400 dark:placeholder-secondary-500 border border-secondary-300 focus:ring-primary-500 focus:border-primary-500 dark:border-secondary-600 form-input block w-full sm:text-sm rounded-md transition ease-in-out duration-100 focus:outline-none shadow-sm">
-                                <option class="h-8 w-full animate-pulse bg-slate-200 dark:bg-slate-600 rounded" value="RON">RON</option>
+                                <option class="h-8 w-full animate-pulse bg-slate-200 dark:bg-slate-600 rounded"
+                                        value="RON">RON
+                                </option>
                             </select>
                         </div>
 
-                        <x-inputs.number label="Transaction amount"  wire:model="transaction_amount" />
+                        <x-inputs.number label="Transaction amount" wire:model="transaction_amount"/>
 
 
                     </div>
                     <div class="mt-2">
-                        <x-textarea wire:model="transaction_description" label="Description" placeholder="Write a description"/>
+                        <x-textarea wire:model="transaction_description" label="Description"
+                                    placeholder="Write a description"/>
                     </div>
                     <div class="mt-2">
-                        <x-input label="Comment" placeholder="Comment" wire:model="transaction_comment" />
+                        <x-input label="Comment" placeholder="Comment" wire:model="transaction_comment"/>
                     </div>
                 </div>
 

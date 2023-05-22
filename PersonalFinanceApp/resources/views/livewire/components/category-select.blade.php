@@ -1,5 +1,5 @@
 <div x-data="{open:false}" class="rounded-lg" :class="open ? 'border' : ''" x-transition.opacity.duration.300ms >
-    <div class="flex justify-between items-center p-2 rounded-lg" style="background-color: {{$selected_category ? $selected_category->category_color : "#e5e5e5"}}">
+    <div class="flex justify-between items-center p-2 mb-1 rounded-lg" style="background-color: {{$selected_category ? $selected_category->category_color : "#e5e5e5"}}">
         <div>
 {{--            <div class="w-6 h-6 rounded-full" style="background-color: {{$selected_category ? $selected_category->category_color : "#e5e5e5"}}">--}}
 {{--            </div>--}}

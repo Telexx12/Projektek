@@ -1,4 +1,4 @@
-<div class="border border-2 w-full rounded-lg p-3"
+<div class="border border-2 w-full rounded-lg p-3 py-8"
      wire:ignore
      x-data="{
 
@@ -77,8 +77,7 @@
 
 
 >
-    <h1 class="text-center font-bold">Chart</h1>
-    <div class="w-full relative h-60 md:h-80">
+    <div class="w-full relative mb-3.5 h-60 md:h-80">
         <canvas id="cash-line-chart" class="w-100" x-ref="canvas"></canvas>
     </div>
     <div class="flex justify-between border rounded-lg">

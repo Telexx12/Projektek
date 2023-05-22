@@ -68,6 +68,7 @@ class CategoryCreate extends Component
         $this->color = "#e5e5e5";
 
         $this->emit('refreshComponent');
+        $this->emit('category_created');
     }
 
 

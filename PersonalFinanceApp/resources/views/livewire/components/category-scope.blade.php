@@ -12,13 +12,17 @@
         />
 
         <x-card cardClasses="flex-1 h-8/12" class="flex flex-col gap-2">
-            <div class="flex-1 ">
-                @if($scopes)
-                    @foreach($scopes as $scope)
-                        <p>{{$scope->category_scope_name}}</p>
-
-                    @endforeach
-                @endif
+            <div class="flex-1">
+                <div class="flex flex-wrap gap-2">
+                    @if($scopes)
+                        @foreach($scopes as $scope)
+                            <div class="rounded-lg bg-blue-100">
+                                <label class="text-sm font-semibold w-full h-full flex items-center p-1"><span
+                                        class="bg-white rounded-lg p-1">{{$scope->category_scope_name}}</span></label>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
             </div>
             <div class="flex gap-2 items-center">
                 <div class="flex-1">

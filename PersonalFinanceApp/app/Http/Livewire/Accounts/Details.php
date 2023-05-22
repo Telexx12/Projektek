@@ -38,7 +38,9 @@ class Details extends Component
         'transactionDeleted',
     ];
 
+
     public function mount(){
+
         $this->number_of_transactions = 5;
 
         $this->transactionMethod = true;
@@ -100,6 +102,8 @@ class Details extends Component
             $this->getTransactions();
 
             $this->emit('transactionAdded');
+            $this->emit('refreshPieChart');
+
         }
     }
 

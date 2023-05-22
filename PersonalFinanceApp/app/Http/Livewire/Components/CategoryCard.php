@@ -21,13 +21,7 @@ class CategoryCard extends Component
 
         Categories::query()->where('id',$this->category->id)->update(['category_color' => $this->category_color]);
 
-//        $this->emitUp('refreshComponent');
-
         $this->emit('refreshChild');
-
-//        $this->category = null;
-//        $this->category_color = null;
-
     }
 
     public function mount(){

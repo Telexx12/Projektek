@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
            AccountTypeSeeder::class,
             BankTypeSeeder::class,
             CategorySeeder::class,
+            CategoryScopeSeeder::class,
         ]);
     }
 }

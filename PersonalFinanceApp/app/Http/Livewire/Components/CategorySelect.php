@@ -27,6 +27,8 @@ class CategorySelect extends Component
 
         $this->selected_category = $this->transaction->category;
 
+
+        $this->emit('refreshPieChart');
         $this->emit('refreshComponent');
     }
 

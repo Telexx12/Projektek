@@ -18,13 +18,14 @@ class CategoryScope extends Component
 
     public $scopes;
 
+
     public function mount()
     {
 
 
         $this->category_names = $this->categories->map(function ($category) {
             return collect($category->toArray())
-                ->only(['id', 'category_name'])
+                ->only(['id', 'category_name','category_color'])
                 ->all();
         });
 
@@ -61,6 +62,7 @@ class CategoryScope extends Component
 //        $this->selected_category = null;
 
         $this->getScopes();
+
     }
 
 

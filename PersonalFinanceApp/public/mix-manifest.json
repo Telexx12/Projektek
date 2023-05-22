@@ -10,5 +10,6 @@
     "/webfonts/fa-solid-900.woff2": "/webfonts/fa-solid-900.woff2",
     "/webfonts/fa-v4compatibility.ttf": "/webfonts/fa-v4compatibility.ttf",
     "/webfonts/fa-v4compatibility.woff2": "/webfonts/fa-v4compatibility.woff2",
-    "/assets/js/sweetalert2.all.min.js": "/assets/js/sweetalert2.all.min.js"
+    "/assets/js/chart.umd.js": "/assets/js/chart.umd.js",
+    "/assets/js/helpers.segment.js.map": "/assets/js/helpers.segment.js.map"
 }

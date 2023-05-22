@@ -33,7 +33,6 @@ class CashLineChart extends Component
 
         $this->selectedRadio = "month";
 
-
         $this->transactions = Transaction::where('account_id', $this->account->id)->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'))->get()->groupBy('completed_date')->toArray();
 
         $this->amount = Transaction::where('account_id', $this->account->id)->where('completed_date', '<', Carbon::now()->subMonth()->format('Y-m-d'))->sum('amount');

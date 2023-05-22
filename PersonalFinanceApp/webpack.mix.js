@@ -21,4 +21,8 @@ mix.sass('resources/sass/fontawesome.scss','public/css')
     'node_modules/@fortawesome/fontawesome-free/webfonts',
     'public/webfonts'
 );
-mix.copy('resources/assets/js/sweetalert2.all.min.js', 'public/assets/js');
+mix.copy('node_modules/chart.js/dist/chart.umd.js', 'public/assets/js');
+mix.copy('node_modules/chart.js/dist/helpers.js.map', 'public/assets/js/helpers.segment.js.map');
+
+
+
