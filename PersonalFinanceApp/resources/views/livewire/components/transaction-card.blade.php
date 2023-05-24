@@ -1,5 +1,5 @@
 <x-card cardClasses="mb-2 md:mb-6" class="!py-2 md:!py-5">
-    <div class="flex justify-start">
+    <div class="flex justify-start {{$hide ? 'hidden' : ''}}">
         <div class="mb-1 hidden md:block" wire:click="deleteTransaction">
             <x-icon name="x-circle" class="w-7 text-red-600"/>
         </div>

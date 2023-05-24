@@ -45,7 +45,7 @@
     </div>
 </aside>
 
-<div class="fixed md:hidden w-screen items-end justify-center transparent-tap z-50" style="top:91%; left: 10%">
+<div class="fixed md:hidden w-screen items-end justify-center transparent-tap z-50" style="bottom:0%; left: 10%">
     <div class="mb-3 opacity-70 bg-gray-900 rounded-full w-4/5 flex justify-around text-white">
             <a class="flex-1 text-center pt-2 pb-1 flex flex-col items-center text-sm font-bold" href="{{route('dashboard')}}">
                 <i class="fa-solid fa-house {{Request::is('/') ? 'text-[#818cf8]' : ''}}"></i>

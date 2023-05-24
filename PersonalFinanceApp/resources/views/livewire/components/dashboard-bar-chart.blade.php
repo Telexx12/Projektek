@@ -41,7 +41,7 @@
                      type: 'bar',
                       data: data,
                       options: {
-                                              responsive:true,
+                        responsive:true,
 
                         maintainAspectRatio:false,
                         plugins:{
@@ -103,8 +103,8 @@
         }"
 >
     <h1 class="text-center text-lg font-bold">Number of transactions</h1>
-    <div class="w-full min-h-[30vh] h-[90%] flex justify-center mb-2 relative">
+    <div class="w-full min-h-[40vh] h-[60%] flex justify-center mb-2 relative">
 
-            <canvas id="transaction-bar-chart" class="w-full" x-ref="transactionBarChart"></canvas>
+        <canvas id="transaction-bar-chart" x-ref="transactionBarChart"></canvas>
     </div>
 </div>

@@ -7,9 +7,8 @@ use App\Models\Transaction;
 use Carbon\Carbon;
 use Livewire\Component;
 
-class CategoryPieChart extends Component
+class DashboardPieChart extends Component
 {
-    public $account;
 
     public $pieMethod;
     public $selectedRadio;
@@ -21,6 +20,10 @@ class CategoryPieChart extends Component
     public $pieChartColors = [];
 
     public $categories;
+
+    protected $listeners =  [
+        'refreshPieChart',
+    ];
 
     public function refreshPieChart(){
         $this->updatedSelectedRadio();
@@ -35,9 +38,9 @@ class CategoryPieChart extends Component
         $this->pieMethod = false;
 
         if ($this->pieMethod)
-            $this->transactions = Transaction::where('account_id', $this->account->id)->where('amount', '>', 0)->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'))->orderBy('completed_date')->get();
+            $this->transactions = Transaction::where('user_id', auth()->user()->id)->where('amount', '>', 0)->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'))->orderBy('completed_date')->get();
         else
-            $this->transactions = Transaction::where('account_id', $this->account->id)->where('amount', '<', 0)->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'))->orderBy('completed_date')->get();
+            $this->transactions = Transaction::where('user_id', auth()->user()->id)->where('amount', '<', 0)->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'))->orderBy('completed_date')->get();
 
         $this->buildPieChartData($this->transactions);
 
@@ -48,39 +51,39 @@ class CategoryPieChart extends Component
         switch ($this->selectedRadio) {
             case 'week':
                 if ($this->pieMethod)
-                    $this->transactions = Transaction::where('account_id', $this->account->id)->where('amount', '>', 0)->where('completed_date', '>=', Carbon::now()->subWeek()->format('Y-m-d'))->orderBy('completed_date')->get();
+                    $this->transactions = Transaction::where('user_id', auth()->user()->id)->where('amount', '>', 0)->where('completed_date', '>=', Carbon::now()->subWeek()->format('Y-m-d'))->orderBy('completed_date')->get();
                 else
-                    $this->transactions = Transaction::where('account_id', $this->account->id)->where('amount', '<', 0)->where('completed_date', '>=', Carbon::now()->subWeek()->format('Y-m-d'))->orderBy('completed_date')->get();
+                    $this->transactions = Transaction::where('user_id', auth()->user()->id)->where('amount', '<', 0)->where('completed_date', '>=', Carbon::now()->subWeek()->format('Y-m-d'))->orderBy('completed_date')->get();
                 $this->buildPieChartData($this->transactions);
                 break;
             case 'month':
                 if ($this->pieMethod)
-                    $this->transactions = Transaction::where('account_id', $this->account->id)->where('amount', '>', 0)->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'))->orderBy('completed_date')->get();
+                    $this->transactions = Transaction::where('user_id', auth()->user()->id)->where('amount', '>', 0)->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'))->orderBy('completed_date')->get();
                 else
-                    $this->transactions = Transaction::where('account_id', $this->account->id)->where('amount', '<', 0)->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'))->orderBy('completed_date')->get();
+                    $this->transactions = Transaction::where('user_id', auth()->user()->id)->where('amount', '<', 0)->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'))->orderBy('completed_date')->get();
 
                 $this->buildPieChartData($this->transactions);
                 break;
             case 'months':
                 if ($this->pieMethod)
-                    $this->transactions = Transaction::where('account_id', $this->account->id)->where('amount', '>', 0)->where('completed_date', '>=', Carbon::now()->subMonths(3)->format('Y-m-d'))->orderBy('completed_date')->get();
+                    $this->transactions = Transaction::where('user_id', auth()->user()->id)->where('amount', '>', 0)->where('completed_date', '>=', Carbon::now()->subMonths(3)->format('Y-m-d'))->orderBy('completed_date')->get();
                 else
-                    $this->transactions = Transaction::where('account_id', $this->account->id)->where('amount', '<', 0)->where('completed_date', '>=', Carbon::now()->subMonths(3)->format('Y-m-d'))->orderBy('completed_date')->get();
+                    $this->transactions = Transaction::where('user_id', auth()->user()->id)->where('amount', '<', 0)->where('completed_date', '>=', Carbon::now()->subMonths(3)->format('Y-m-d'))->orderBy('completed_date')->get();
                 $this->buildPieChartData($this->transactions);
                 break;
             case 'year':
 
                 if ($this->pieMethod)
-                    $this->transactions = Transaction::where('account_id', $this->account->id)->where('amount', '>', 0)->where('completed_date', '>=', Carbon::now()->subYear()->format('Y-m-d'))->orderBy('completed_date')->get();
+                    $this->transactions = Transaction::where('user_id', auth()->user()->id)->where('amount', '>', 0)->where('completed_date', '>=', Carbon::now()->subYear()->format('Y-m-d'))->orderBy('completed_date')->get();
                 else
-                    $this->transactions = Transaction::where('account_id', $this->account->id)->where('amount', '<', 0)->where('completed_date', '>=', Carbon::now()->subYear()->format('Y-m-d'))->orderBy('completed_date')->get();
+                    $this->transactions = Transaction::where('user_id', auth()->user()->id)->where('amount', '<', 0)->where('completed_date', '>=', Carbon::now()->subYear()->format('Y-m-d'))->orderBy('completed_date')->get();
                 $this->buildPieChartData($this->transactions);
                 break;
             case 'all':
                 if ($this->pieMethod)
-                    $this->transactions = Transaction::where('account_id', $this->account->id)->where('amount','>',0)->orderBy('completed_date')->get();
+                    $this->transactions = Transaction::where('user_id', auth()->user()->id)->where('amount','>',0)->orderBy('completed_date')->get();
                 else
-                    $this->transactions = Transaction::where('account_id', $this->account->id)->where('amount','<',0)->orderBy('completed_date')->get();
+                    $this->transactions = Transaction::where('user_id', auth()->user()->id)->where('amount','<',0)->orderBy('completed_date')->get();
                 $this->buildPieChartData($this->transactions);
                 break;
         }
@@ -124,9 +127,8 @@ class CategoryPieChart extends Component
         }
 
     }
-
     public function render()
     {
-        return view('livewire.components.category-pie-chart');
+        return view('livewire.components.dashboard-pie-chart');
     }
 }

@@ -15,6 +15,8 @@ class TransactionCard extends Component
 
     public $transaction;
 
+    public $hide;
+
     public $comment;
 
     public $categories;

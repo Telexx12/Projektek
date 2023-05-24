@@ -60,7 +60,7 @@ class Details extends Component
     }
 
     public function getTransactions(){
-        $this->transactions = Transaction::where('user_id',auth()->user()->id)->orderBy('completed_date','desc')->take($this->number_of_transactions)->get();
+        $this->transactions = Transaction::where('user_id',auth()->user()->id)->where('account_id', $this->account->id)->orderBy('completed_date','desc')->take($this->number_of_transactions)->get();
 
     }
 
