@@ -13,17 +13,23 @@ class CategorySelect extends Component
 
     public $selected_category;
 
+    public $already_loaded_categories = [];
+
     protected $rules = ['selected_category' => ''];
 
     protected $listeners = [
-        'refreshComponent'   => '$refresh',
+        'refreshComponent' => '$refresh',
     ];
 
-    public function updatedSelectedCategory(){
+    public function updatedSelectedCategory()
+    {
 
-        Transaction::query()->where('id',$this->transaction->id)->update(['category_id' => $this->selected_category]);
+        if ($this->selected_category == 0)
+            $this->selected_category = null;
 
-        $this->transaction = Transaction::query()->where('id',$this->transaction->id)->first();
+        Transaction::query()->where('id', $this->transaction->id)->update(['category_id' => $this->selected_category]);
+
+        $this->transaction = Transaction::query()->where('id', $this->transaction->id)->first();
 
         $this->selected_category = $this->transaction->category;
 
@@ -32,11 +38,13 @@ class CategorySelect extends Component
         $this->emit('refreshComponent');
     }
 
-    public function mount(){
-        $this->selected_category = $this->transaction->category;
+    public function mount()
+    {
+        $this->selected_category = $this->categories->where('id',$this->transaction->category_id)->first();
     }
 
-    public function is_color_dark($hex_color) {
+    public function is_color_dark($hex_color)
+    {
         // Convert the hex color to RGB values
         $red = hexdec(substr($hex_color, 0, 2));
         $green = hexdec(substr($hex_color, 2, 2));
@@ -55,6 +63,6 @@ class CategorySelect extends Component
 
     public function render()
     {
-        return view('livewire.components.category-select',['categoires' => $this->categories]);
+        return view('livewire.components.category-select', ['categoires' => $this->categories]);
     }
 }

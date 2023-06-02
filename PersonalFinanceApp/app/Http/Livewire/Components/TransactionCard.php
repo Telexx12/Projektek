@@ -22,6 +22,7 @@ class TransactionCard extends Component
     public $categories;
 
 
+
     protected $listeners = [
         'refreshComponent' => '$refresh',
         'confirmedDelete'
@@ -31,7 +32,7 @@ class TransactionCard extends Component
         $this->createTransactionModal = false;
         $this->comment = $this->transaction->comment;
 
-        $this->categories = auth()->user()->categories;
+
 
     }
 

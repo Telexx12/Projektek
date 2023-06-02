@@ -22,6 +22,10 @@ class CategoryPieChart extends Component
 
     public $categories;
 
+    protected $listeners =  [
+        'refreshPieChart'
+    ];
+
     public function refreshPieChart(){
         $this->updatedSelectedRadio();
     }

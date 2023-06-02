@@ -31,7 +31,8 @@
                     <div
                         class="overflow-y-auto md:overflow-y-scroll md:h-[60vh] soft-scrollbar md:pr-2 md:border rounded-lg">
                         @foreach($transactions as $transaction)
-                            <livewire:components.transaction-card :transaction="$transaction"
+                            <livewire:components.transaction-card :categories="$categories"
+                                                                  :transaction="$transaction"
                                                                   :wire:key="'transaction-'.$transaction->id"/>
                         @endforeach
                         <div class="block md:hidden flex justify-center mt-3">

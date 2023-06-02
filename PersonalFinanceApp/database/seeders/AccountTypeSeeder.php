@@ -25,8 +25,6 @@ class AccountTypeSeeder extends Seeder
                 'icon_name' => 'credit_card_icon.png'
             ]
         ];
-
-
         foreach($accountTypes as $accountType){
             AccountType::create($accountType);
         }

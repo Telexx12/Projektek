@@ -31,6 +31,8 @@ class Details extends Component
 
     public $rerenderChart = 0;
 
+    public $categories;
+
     public $importFile;
 
     protected $listeners  = [
@@ -45,7 +47,10 @@ class Details extends Component
 
         $this->transactionMethod = true;
 
+        $this->categories = auth()->user()->categories;
+
         $this->getTransactions();
+
     }
 
     public function openTransactionCreateModel(){

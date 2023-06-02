@@ -34,8 +34,6 @@ class AiSection extends Component
             'How can I create an emergency fund to handle unexpected expenses?',
             'What are some effective ways to minimize my expenses and save money on a daily basis?',
             'What are the benefits and risks associated with different investment options, such as stocks, bonds, real estate, or mutual funds?');
-
-
     }
 
     public function askAi($key){
@@ -51,7 +49,6 @@ class AiSection extends Component
                 ["role" => "user", "content" => $asked_question]
             ]
         ])->json();
-
 
         $this->answer = $response['choices'][0]['message']['content'];
     }
