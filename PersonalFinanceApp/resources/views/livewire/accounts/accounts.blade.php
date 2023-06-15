@@ -14,7 +14,6 @@
             </div>
         </x-card>
     </button>
-
     @foreach($accounts as $account)
         <div class="mb-6 mr-3 w-full sm:w-[46.5%] md:w-[46.5%] lg:w-[45%] 2xl:w-[30%]" id="{{$account->id}}" href="{{route("account.details",$account)}}" wire:click="redirectToDetails({{$account->id}})">
             <x-card cardClasses="h-full">

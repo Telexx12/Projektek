@@ -31,7 +31,6 @@ class DashboardCards extends Component
     public $balance_change;
 
 
-
     public function mount()
     {
         $this->transactions = $this->getTransactions();
@@ -78,7 +77,10 @@ class DashboardCards extends Component
 
     public function getMonthlyIncome()
     {
-        $month_transactions = $this->transactions->where('user_id', auth()->user()->id)->where('amount','>',0)->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'));
+        $month_transactions = $this->transactions->where('user_id', auth()->user()->id)
+            ->where('amount','>',0)
+            ->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'));
+
         $sum = 0;
 
         foreach ($month_transactions as $trans){
@@ -97,7 +99,10 @@ class DashboardCards extends Component
         $this->last_month_income = $sum;
 
 
-        $this->income_monthly_change = number_format((($this->monthly_income - $this->last_month_income)/$this->last_month_income) * 100,2);
+        if($this->last_month_income != 0)
+            $this->income_monthly_change = number_format((($this->monthly_income - $this->last_month_income)/$this->last_month_income) * 100,2);
+        else
+            $this->income_monthly_change = "NaN";
     }
 
     public function getAverageIncome(){
@@ -114,8 +119,11 @@ class DashboardCards extends Component
 
         $this->average_income = $result->avg;
 
-        $this->average_income_change =  number_format((($this->monthly_income - $this->average_income)/$this->average_income) * 100,2);
 
+        if($this->average_income != 0)
+            $this->average_income_change =  number_format((($this->monthly_income - $this->average_income)/$this->average_income) * 100,2);
+        else
+            $this->average_income_change = "NaN";
         $this->average_income = number_format($result->avg,2);
 
     }
@@ -140,7 +148,10 @@ class DashboardCards extends Component
         $this->last_month_expens = $sum * -1;
 
 
-        $this->expens_monthly_change = number_format((($this->monthly_expens - $this->last_month_expens)/$this->last_month_expens) * 100,2);
+        if($this->last_month_expens != 0)
+            $this->expens_monthly_change = number_format((($this->monthly_expens - $this->last_month_expens)/$this->last_month_expens) * 100,2);
+        else
+            $this->expens_monthly_change = "NaN";
     }
 
     public function getAverageExpens(){
@@ -156,8 +167,10 @@ class DashboardCards extends Component
 
         $this->average_expens = $result->avg * -1;
 
-        $this->average_expense_change =  number_format((($this->monthly_expens - $this->average_expens)/$this->average_expens) * 100,2);
-
+        if($this->average_expens != 0)
+            $this->average_expense_change =  number_format((($this->monthly_expens - $this->average_expens)/$this->average_expens) * 100,2);
+        else
+            $this->average_expense_change = "NaN";
         $this->average_expens = number_format($result->avg * -1,2);
     }
 
@@ -171,8 +184,10 @@ class DashboardCards extends Component
 
         $this->last_month_balance = $sum;
 
-        $this->balance_change = number_format((($this->current_balance - $this->last_month_balance)/$this->last_month_balance) * 100,2);
-
+        if($this->last_month_balance != 0)
+            $this->balance_change = number_format((($this->current_balance - $this->last_month_balance)/$this->last_month_balance) * 100,2);
+        else
+            $this->balance_change = "NaN";
     }
 
     public function render()

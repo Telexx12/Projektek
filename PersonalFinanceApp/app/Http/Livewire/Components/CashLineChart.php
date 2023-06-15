@@ -54,13 +54,23 @@ class CashLineChart extends Component
     {
         switch ($this->selectedRadio) {
             case 'week':
-                $this->transactions = Transaction::where('account_id', $this->account->id)->where('completed_date', '>=', Carbon::now()->subWeek()->format('Y-m-d'))->orderBy('completed_date')->get()->groupBy('completed_date')->toArray();
-                $this->amount = Transaction::where('account_id', $this->account->id)->where('completed_date', '<', Carbon::now()->subWeek()->format('Y-m-d'))->sum('amount');
+                $this->transactions = Transaction::where('account_id', $this->account->id)
+                    ->where('completed_date', '>=', Carbon::now()->subWeek()->format('Y-m-d'))
+                    ->orderBy('completed_date')->get()->groupBy('completed_date')
+                    ->toArray();
+                $this->amount = Transaction::where('account_id', $this->account->id)
+                    ->where('completed_date', '<', Carbon::now()->subWeek()->format('Y-m-d'))
+                    ->sum('amount');
                 $this->buildChartDataWeek($this->transactions, $this->amount);
                 break;
             case 'month':
-                $this->transactions = Transaction::where('account_id', $this->account->id)->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'))->orderBy('completed_date')->get()->groupBy('completed_date')->toArray();
-                $this->amount = Transaction::where('account_id', $this->account->id)->where('completed_date', '<', Carbon::now()->subMonth()->format('Y-m-d'))->sum('amount');
+                $this->transactions = Transaction::where('account_id', $this->account->id)
+                    ->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'))
+                    ->orderBy('completed_date')->get()->groupBy('completed_date')->toArray();
+                $this->amount = Transaction::where('account_id', $this->account->id)
+                    ->where('completed_date', '<', Carbon::now()->subMonth()->format('Y-m-d'))
+                    ->sum('amount');
+
                 $this->buildChartDataMonth($this->transactions, $this->amount);
                 break;
             case 'months':
@@ -179,7 +189,6 @@ class CashLineChart extends Component
                 }
                 $current_amount += $change;
             }
-
             $this->chartDatas[$day] = $current_amount;
         }
 

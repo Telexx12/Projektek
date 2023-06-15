@@ -34,22 +34,22 @@
                 const myChart = new Chart(this.$refs.pieChartCanvas,{
                     type: 'pie',
                     data:{
-                    labels: labels,
-                    datasets: [
-                        {
-                            data: values,
-                            backgroundColor: colors,
-                        }]
+                        labels: labels,
+                        datasets: [
+                            {
+                                data: values,
+                                backgroundColor: colors,
+                            }]
                      },
                      options: {
-                        responsive:true,
+                       responsive:true,
                        plugins:{
-                        legend: {
-                            display: false,
-                            position: 'bottom'
-                        },
-                     }
-                        }
+                            legend: {
+                                display: false,
+                                position: 'bottom'
+                            },
+                       }
+                    }
                 });
 
                 Livewire.on('updateChart', () => {

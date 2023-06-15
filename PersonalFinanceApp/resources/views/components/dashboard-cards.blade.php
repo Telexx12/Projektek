@@ -5,7 +5,7 @@
                 <div class="flex flex-col md:flex-row gap-2">
                     <div class="md:w-8/12">
                         <h3 class="text-sm font-bold whitespace-nowrap text-center md:text-left">Total income</h3>
-                        <h1 class="text-sm md:text-lg xl:text-3xl font-bold mt-2 mb-2 whitespace-nowrap text-center md:text-left">{{$total_income}}
+                        <h1 class="text-sm md:text-lg xl:text-3xl font-bold mt-2 mb-2 whitespace-nowrap text-center md:text-left">{{$this->total_income}}
                             RON</h1>
                     </div>
                     <div class="md:w-4/12 flex items-center justify-center">
@@ -26,7 +26,7 @@
                             <div>
                                 <h3 class="text-sm font-bold whitespace-nowrap text-center 2xl:text-left">Monthly
                                     income</h3>
-                                <h1 class="text-sm  md:text-lg xl:text-2xl font-bold mt-2 mb-2 whitespace-nowrap text-center 2xl:text-left">{{$monthly_income}}
+                                <h1 class="text-sm  md:text-lg xl:text-2xl font-bold mt-2 mb-2 whitespace-nowrap text-center 2xl:text-left">{{$this->monthly_income}}
                                     RON</h1>
                             </div>
                         </div>
@@ -35,21 +35,21 @@
                                 <div class="ml-2">
                                     <h3 class="text-xs 2x font-extrabold md:whitespace-nowrap mb-1 text-center 2xl:text-left">Last month
                                         income</h3>
-                                    <h1 class="text-sm md:text-lg xl:text-xl font-bold whitespace-nowrap text-center md:text-left">{{$last_month_income}}
+                                    <h1 class="text-sm md:text-lg xl:text-xl font-bold whitespace-nowrap text-center md:text-left">{{$this->last_month_income}}
                                         RON</h1>
                                 </div>
                                 <?php
-                                    if($this->income_monthly_change == "NaN")
-                                        $color = "";
-                                    elseif($this->income_monthly_change > 0)
-                                        $color = 'text-green-700';
-                                    elseif($this->income_monthly_change < 0)
-                                        $color = 'text-red-700';
-                                    else{
-                                        $color = "";
-                                    }
+                                if($this->income_monthly_change == "NaN")
+                                    $color = "";
+                                elseif($this->income_monthly_change > 0)
+                                    $color = 'text-green-700';
+                                elseif($this->income_monthly_change < 0)
+                                    $color = 'text-red-700';
+                                else{
+                                    $color = "";
+                                }
                                 ?>
-                                <h1 class="text-xs m-0 md:text-base font-extrabold md:font-bold whitespace-nowrap text-center md:text-left {{$color}} ">{{$income_monthly_change}}{{$income_monthly_change == "NaN" ? '' : '%'}}
+                                <h1 class="text-xs m-0 md:text-base font-extrabold md:font-bold whitespace-nowrap text-center md:text-left {{$color}} ">{{$this->income_monthly_change}}{{$this->income_monthly_change == "NaN" ? '' : '%'}}
                                     @if($this->income_monthly_change == "NaN")
                                     @elseif($this->income_monthly_change == '0.00%')
                                         <i class="fa-solid fa-equals"></i>
@@ -65,7 +65,7 @@
                             <div class="flex flex-col w-full justify-between items-center 2xl:flex-row mb-4">
                                 <div class="ml-2">
                                     <h3 class="text-xs 2x font-extrabold md:whitespace-nowrap mb-1 text-center 2xl:text-left">Average monthly income</h3>
-                                    <h1 class="text-sm md:text-lg xl:text-xl font-bold whitespace-nowrap text-center md:text-left">{{$average_income}} RON</h1>
+                                    <h1 class="text-sm md:text-lg xl:text-xl font-bold whitespace-nowrap text-center md:text-left">{{$this->average_income}} RON</h1>
                                 </div>
                                 <?php
                                 if($this->average_income_change == "NaN")
@@ -78,7 +78,7 @@
                                     $color = "";
                                 }
                                 ?>
-                                <h1 class="text-xs m-0 md:text-base font-extrabold md:font-bold whitespace-nowrap text-center md:text-left {{$color}} ">{{$average_income_change}}{{$average_income_change == "NaN" ? '' : '%'}}
+                                <h1 class="text-xs m-0 md:text-base font-extrabold md:font-bold whitespace-nowrap text-center md:text-left {{$color}} ">{{$this->average_income_change}}{{$this->average_income_change == "NaN" ? '' : '%'}}
                                     @if($this->average_income_change == "NaN")
                                     @elseif($this->average_income_change == '0.00%')
                                         <i class="fa-solid fa-equals"></i>
@@ -101,7 +101,7 @@
                 <div class="flex flex-col md:flex-row gap-2">
                     <div class="md:w-8/12">
                         <h3 class="text-sm font-bold whitespace-nowrap text-center md:text-left">Total Expens</h3>
-                        <h1 class="text-sm md:text-lg xl:text-3xl font-bold mt-2 mb-2 whitespace-nowrap text-center md:text-left">{{$total_expens}}
+                        <h1 class="text-sm md:text-lg xl:text-3xl font-bold mt-2 mb-2 whitespace-nowrap text-center md:text-left">{{$this->total_expens}}
                             RON</h1>
                     </div>
                     <div class="md:w-4/12 flex items-center justify-center">
@@ -125,7 +125,7 @@
                             <div>
                                 <h3 class="text-sm font-bold whitespace-nowrap text-center 2xl:text-left">Monthly
                                     expens</h3>
-                                <h1 class="text-sm md:text-lg xl:text-2xl font-bold mt-2 mb-2 whitespace-nowrap text-center 2xl:text-left">{{$monthly_expens}}
+                                <h1 class="text-sm md:text-lg xl:text-2xl font-bold mt-2 mb-2 whitespace-nowrap text-center 2xl:text-left">{{$this->monthly_expens}}
                                     RON</h1>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
                                 <div class="ml-2">
                                     <h3 class="text-xs 2x font-extrabold md:whitespace-nowrap mb-1 text-center 2xl:text-left">Last month
                                         expens</h3>
-                                    <h1 class="text-sm md:text-lg xl:text-xl font-bold whitespace-nowrap text-center md:text-left">{{$last_month_expens}}
+                                    <h1 class="text-sm md:text-lg xl:text-xl font-bold whitespace-nowrap text-center md:text-left">{{$this->last_month_expens}}
                                         RON</h1>
                                 </div>
                                 <?php
@@ -148,7 +148,7 @@
                                     $color = "";
                                 }
                                 ?>
-                                <h1 class="text-xs m-0 md:text-base font-extrabold md:font-bold whitespace-nowrap text-center md:text-left {{$color}} ">{{$expens_monthly_change}}{{$expens_monthly_change == "NaN" ? '' : '%'}}
+                                <h1 class="text-xs m-0 md:text-base font-extrabold md:font-bold whitespace-nowrap text-center md:text-left {{$color}} ">{{$this->expens_monthly_change}}{{$this->expens_monthly_change == "NaN" ? '' : '%'}}
                                     @if($this->expens_monthly_change == "NaN")
                                     @elseif($this->expens_monthly_change == '0.00%')
                                         <i class="fa-solid fa-equals"></i>
@@ -164,7 +164,7 @@
                             <div class="flex flex-col w-full justify-between items-center 2xl:flex-row mb-4">
                                 <div class="ml-2">
                                     <h3 class="text-xs 2x font-extrabold md:whitespace-nowrap mb-1 text-center 2xl:text-left">Average monthly expens</h3>
-                                    <h1 class="text-sm md:text-lg xl:text-xl font-bold whitespace-nowrap text-center md:text-left">{{$average_expens}} RON</h1>
+                                    <h1 class="text-sm md:text-lg xl:text-xl font-bold whitespace-nowrap text-center md:text-left">{{$this->average_expens}} RON</h1>
                                 </div>
                                 <?php
                                 if($this->average_expense_change == "NaN")
@@ -177,7 +177,7 @@
                                     $color = "";
                                 }
                                 ?>
-                                <h1 class="text-xs m-0 md:text-base font-extrabold md:font-bold whitespace-nowrap text-center md:text-left {{$color}} ">{{$average_expense_change}}{{$average_expense_change == "NaN" ? '' : '%'}}
+                                <h1 class="text-xs m-0 md:text-base font-extrabold md:font-bold whitespace-nowrap text-center md:text-left {{$color}} ">{{$this->average_expense_change}}{{$this->average_expense_change == "NaN" ? '' : '%'}}
                                     @if($this->average_expense_change == "NaN")
                                     @elseif($this->average_expense_change == '0.00%')
                                         <i class="fa-solid fa-equals"></i>
@@ -199,7 +199,7 @@
                 <div class="flex flex-col md:flex-row gap-2">
                     <div class="md:w-8/12">
                         <h3 class="text-sm font-bold whitespace-nowrap text-center md:text-left">Current Balance</h3>
-                        <h1 class="text-sm md:text-lg xl:text-3xl font-bold mt-2 mb-2 whitespace-nowrap text-center md:text-left">{{$current_balance}}
+                        <h1 class="text-sm md:text-lg xl:text-3xl font-bold mt-2 mb-2 whitespace-nowrap text-center md:text-left">{{$this->current_balance}}
                             RON</h1>
                     </div>
                     <div class="md:w-4/12 flex items-center justify-center">
@@ -218,7 +218,7 @@
                         <div class="flex items-center justify-center w-full 2xl:w-4/12">
                             <div>
                                 <h3 class="text-xs 2x font-extrabold md:whitespace-nowrap mb-1 text-center 2xl:text-left">Last month balance</h3>
-                                <h1 class="text-sm md:text-lg xl:text-2xl font-bold mt-2 mb-2 whitespace-nowrap text-center 2xl:text-left">{{$last_month_balance}}
+                                <h1 class="text-sm md:text-lg xl:text-2xl font-bold mt-2 mb-2 whitespace-nowrap text-center 2xl:text-left">{{$this->last_month_balance}}
                                     RON</h1>
                             </div>
                         </div>
@@ -235,7 +235,7 @@
                                     $color = "";
                                 }
                                 ?>
-                                <h1 class="text-xs m-0 md:text-base font-extrabold md:font-bold whitespace-nowrap text-center md:text-left {{$color}} ">{{$balance_change}}{{$balance_change == "NaN" ? '' : '%'}}
+                                <h1 class="text-xs m-0 md:text-base font-extrabold md:font-bold whitespace-nowrap text-center md:text-left {{$color}} ">{{$this->balance_change}}{{$this->balance_change == "NaN" ? '' : '%'}}
                                     @if($this->balance_change == "NaN")
                                     @elseif($this->balance_change == '0.00%')
                                         <i class="fa-solid fa-equals"></i>
