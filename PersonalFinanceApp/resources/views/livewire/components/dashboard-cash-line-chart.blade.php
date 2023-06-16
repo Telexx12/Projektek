@@ -13,7 +13,9 @@
                             borderWidth: 2,
                             tension: 0.25,
                             data: this.chartDatas,
-                            }]
+                            }],
+
+
                     },
                     options: {
                             responsive:true,

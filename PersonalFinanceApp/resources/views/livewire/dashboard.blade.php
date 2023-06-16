@@ -1,6 +1,6 @@
-
 <div class="px-3">
     <script src="{{ asset('assets/js/chart.umd.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-trendline"></script>
     <x-dashboard-cards
         :total_income="$total_income"
         :monthly_income="$monthly_income"
@@ -31,7 +31,16 @@
         </div>
     </div>
 
-    <livewire:components.dashboard-transactions/>
+    <div class="flex w-full flex-row">
+        <div class="w-7/12">
+            <livewire:components.dashboard-transactions/>
+        </div>
+        <div class="w-5/12 mt-6">
+            <livewire:components.dashboard-plans
+                :current_balance="$current_balance"
+            />
+        </div>
+    </div>
 
     <livewire:components.ai-section
         :total_income="$total_income"

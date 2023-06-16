@@ -1,5 +1,5 @@
 <div class="flex flex-col md:flex-row md:pl-3 mt-6 gap-2">
-    <div class="w-full order-2 md:order-1 md:w-6/12">
+    <div class="w-full order-2 md:order-1">
         <x-card cardClasses="h-full">
 
             <div x-data="{open:false}" class="flex justify-between gap-2 mb-2">

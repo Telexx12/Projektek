@@ -31,7 +31,6 @@
                                     radius: 0.1
                                 },
                                 line:{
-
                                 }
                             },
                             scales: {
