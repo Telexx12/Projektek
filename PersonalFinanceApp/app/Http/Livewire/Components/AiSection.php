@@ -53,9 +53,7 @@ class AiSection extends Component
                     ->from('transactions')
                     ->whereNotNull('transactions.category_id')
                     ->where('completed_date', '>=', Carbon::now()->subMonth()->format('Y-m-d'))
-
                     ->groupBy('category_id')
-                    //                ->where('sum', '<', 0)
                     ->get();
             },'x')
             ->where('x.sum', '<',0)
@@ -65,21 +63,15 @@ class AiSection extends Component
 
             asort($this->category_amounts);
 
-
             if($this->category_amounts){
-
                 $count = count($this->category_amounts);
-
                 $iteration = $count > 3 ? $count : $count -1;
-
                 $i = 1;
-
                 foreach ($this->category_amounts as $key=>$value){
                     if($i == $iteration){
                         break;
                     }
                     $i++;
-
                     $category = Categories::query()->where('id', $key)->select('category_name')->pluck('category_name')->first();
                     array_push($this->categories,$category);
                     $question = "How to reduce " . $category . " expenses?";

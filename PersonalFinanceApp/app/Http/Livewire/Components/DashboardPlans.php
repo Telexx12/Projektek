@@ -28,7 +28,7 @@ class DashboardPlans extends Component
 
     protected $rules = [
         'plan_name' => 'required',
-        'plan_amount' => 'required'
+        'plan_amount' => 'required|numeric|min:0|not_in:0'
     ];
 
 
@@ -70,6 +70,7 @@ class DashboardPlans extends Component
         $this->transactions = Transaction::query()->
         select(DB::raw('SUM(amount) as sum,UNIX_timestamp(completed_date) as completed_date'))
             ->from('transactions')
+            ->where('user_id',auth()->user()->id)
             ->groupBy('completed_date')
             ->get()
             ->pluck('sum', 'completed_date')
@@ -85,14 +86,12 @@ class DashboardPlans extends Component
             array_push($targets, $key);
         }
 
-
         $this->regression = new LeastSquares();
         $this->regression->train($samples, $targets);
 
         foreach ($this->plans as $plan) {
             $plan['prediction'] = $this->prediction($plan->amount);
         }
-
     }
 
     public function prediction($value)

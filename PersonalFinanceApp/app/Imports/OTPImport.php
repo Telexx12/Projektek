@@ -30,7 +30,6 @@ class OTPImport implements ToModel,WithHeadingRow, WithStartRow
     */
     public function model(array $row)
     {
-
         $category_id = null;
 
         foreach ($this->scopes as $scope){
@@ -38,7 +37,6 @@ class OTPImport implements ToModel,WithHeadingRow, WithStartRow
                    $category_id = $scope->category_id;
             }
         }
-
 
         Transaction::firstOrCreate([
             'started_date' => date('Y-m-d',strtotime($row['data_val'])),
